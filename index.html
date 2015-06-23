@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>홈 / UNISTUDY</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">UNISTUDY</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 홈</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 소개</a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 문의</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 강의 목록<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">프로그래밍</li>
+                            <li><a href="#">Engineering Programming I</a>
+                            </li>
+                            <li><a href="#">Engineering Programming II</a>
+                            </li>
+                            <li><a href="#">Business Programming</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">수학</li>
+                            <li><a href="#">Calculus I</a>
+                            </li>
+                            <li><a href="#">Calculus II</a>
+                            </li>
+                            <li><a href="#">Applied Linear Algebra</a>
+                            </li>
+                            <li><a href="#">Differential Equation</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">과학</li>
+                            <li><a href="#">General Biology</a>
+                            </li>
+                            <li><a href="#">General Physics I</a>
+                            </li>
+                            <li><a href="#">General Physics II</a>
+                            </li>
+                            <li><a href="#">General Chemistry I</a>
+                            </li>
+                            <li><a href="#">General Chemistry II</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar-fixed-top/">도움말</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="contents">
+            <p>
+                <h2>알립니다</h2>
+                <span class="label label-success">일반</span> 유니스트 온라인 공개 강의 서비스, 유니스터디 오픈!
+                <br/>
+                <span class="label label-success">일반</span> Engineering Programming I 강의가 업데이트 되었습니다.
+                <br/>
+                <span class="label label-danger">급구</span> 수학 / 과학 과목 공개 강의를 열어주실 분을 구합니다.
+            </p>
+
+            <br/>
+            <br/>
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">익명 채팅</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="chat" style="overflow:scroll; width:100%; height:400px; padding:10px;">
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="할 말을 입력하세요." id="inputMessage">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="sendButton">전송</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            notice = true;
+            var log = function (s) {
+                var contentsDiv = document.getElementById("chat");
+                s = s.replace(/\(lshift\)/g, "&lt");
+                s = s.replace(/\(rshift\)/g, "&gt");
+                var msg = s.split('|');
+
+                if (document.body.scrollTop === 0)
+                    myHeight = document.body.scrollHeight;
+                var canScroll = false;
+                if (document.body.scrollTop === document.body.scrollHeight - myHeight)
+                    canScroll = true;
+
+                switch (msg[0]) {
+                case "0":
+                    if (notice)
+                        contentsDiv.innerHTML += ("<li class='notice'>" + msg[1] + "</li>");
+                    break;
+                case "1":
+                    contentsDiv.innerHTML += ("<li class='my'><b>" + msg[1] + "</b><br />" + msg[2] + "</li>");
+                    if (!canScroll)
+                        document.body.scrollTop = document.body.scrollHeight;
+                    break;
+                case "2":
+                    contentsDiv.innerHTML += ("<li class='other'><b>" + msg[1] + "</b><br />" + msg[2] + "</li>");
+                    break;
+                case "3":
+                    contentsDiv.innerHTML += ("<li class='notice'>" + msg[1] + "</li>");
+                    break;
+                }
+                if (canScroll) {
+                    contentsDiv.scrollTop = contentsDiv.scrollHeight;
+                    document.body.scrollTop = document.body.scrollHeight;
+                }
+
+                el = document.getElementById('chat');
+                if (el.scrollHeight > 0) el.scrollTop = el.scrollHeight;
+                //contentsDiv.scrollTop = contentsDiv.scrollHeight;
+            }
+            log.buffer = [];
+
+            var send = function (msg) {
+                if (msg !== "") {
+                    w.send(msg);
+                    document.getElementById("inputMessage").value = "";
+                }
+            }
+
+            url = "ws://114.108.167.124:8818";
+            w = new WebSocket(url);
+
+            w.onopen = function () {
+                log("0|접속을 시도합니다..");
+            }
+
+            w.onmessage = function (e) {
+                log(e.data);
+            }
+
+            w.onclose = function (e) {
+                log("0|접속 종료");
+            }
+
+            window.onload = function () {
+                log(log.buffer.join("\n"));
+
+                document.getElementById("sendButton").onclick = function () {
+                    var value = document.getElementById("inputMessage").value;
+                    var contentsDiv = document.getElementById("chat");
+                    if (value === "@알림") {
+                        notice = notice ? false : true;
+                        contentsDiv.innerHTML += ("<li class='notice'>알림이 " + (notice ? "켜" : "꺼") + "졌습니다</li>");
+                    } else if (value === "@청소" || value === "@ㅊㅅ") {
+                        contentsDiv.innerHTML = "";
+                    } else {
+                        send(value);
+                    }
+                    document.getElementById("inputMessage").value = "";
+                }
+
+                document.getElementById("inputMessage").onkeypress = function () {
+                    //alert(event.keyCode);
+                    if (event.keyCode == '13') {
+                        var value = document.getElementById("inputMessage").value;
+                        var contentsDiv = document.getElementById("chat");
+                        if (value === "@알림") {
+                            notice = notice ? false : true;
+                            contentsDiv.innerHTML += ("<li class='notice'>알림이 " + (notice ? "켜" : "꺼") + "졌습니다</li>");
+                        } else if (value === "@청소" || value === "@ㅊㅅ") {
+                            contentsDiv.innerHTML = "";
+                        } else {
+                            send(value);
+                        }
+                        document.getElementById("inputMessage").value = "";
+                    }
+                }
+            }
+        </script>
+</body>
+
+</html>
