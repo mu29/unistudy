@@ -10,6 +10,8 @@
     <!-- 스타일시트 -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/unistudy.css" rel="stylesheet">
+    {% block stylesheet %}
+    {% endblock %}
 </head>
 
 <body>
@@ -30,54 +32,43 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     {% block menu_home %}
-                        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 홈</a> </li>
+                        <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 홈</a> </li>
                     {% endblock %}
                     {% block menu_intro %}
                         <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 소개</a> </li>
                     {% endblock %}
                     {% block menu_contact %}
-                        <li><a href="contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 문의</a> </li>
+                        <li><a href="/contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 문의</a> </li>
                     {% endblock %}
                     {% block menu_lecture %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 강의 목록<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header">프로그래밍</li>
-                                <li><a href="#">Engineering Programming I</a>
-                                </li>
-                                <li><a href="#">Engineering Programming II</a>
-                                </li>
-                                <li><a href="#">Business Programming</a>
-                                </li>
+                                <li><a href="#">Engineering Programming I</a> </li>
+                                <li><a href="#">Engineering Programming II</a> </li>
+                                <li><a href="#">Business Programming</a> </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">수학</li>
-                                <li><a href="#">Calculus I</a>
-                                </li>
-                                <li><a href="#">Calculus II</a>
-                                </li>
-                                <li><a href="#">Applied Linear Algebra</a>
-                                </li>
-                                <li><a href="#">Differential Equation</a>
-                                </li>
+                                <li><a href="#">Calculus I</a> </li>
+                                <li><a href="#">Calculus II</a> </li>
+                                <li><a href="#">Applied Linear Algebra</a> </li>
+                                <li><a href="#">Differential Equation</a> </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">과학</li>
-                                <li><a href="#">General Biology</a>
-                                </li>
-                                <li><a href="#">General Physics I</a>
-                                </li>
-                                <li><a href="#">General Physics II</a>
-                                </li>
-                                <li><a href="#">General Chemistry I</a>
-                                </li>
-                                <li><a href="#">General Chemistry II</a>
-                                </li>
+                                <li><a href="#">General Biology</a> </li>
+                                <li><a href="#">General Physics I</a> </li>
+                                <li><a href="#">General Physics II</a> </li>
+                                <li><a href="#">General Chemistry I</a> </li>
+                                <li><a href="#">General Chemistry II</a> </li>
                             </ul>
                         </li>
                     {% endblock %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../navbar-fixed-top/">도움말</a>
-                    </li>
+                    <li><a href="/register">회원가입</a> </li>
+                    <li><a href="/login">로그인</a> </li>
+                    <li><a href="">도움말</a> </li>
                 </ul>
             </div>
         </nav>
