@@ -6,11 +6,16 @@
     <link href="/static/css/register.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <form class="form-signin">
+    <form class="form-signin" action="{{ url_for('register') }}" method="post">
         <h2 class="form-signin-heading">UNISTUDY<span style="font-size:14px">유니스트 온라인 공개 강의</span></h2>
-        <input type="email" id="inputEmail" class="form-control" placeholder="메일 주소" required autofocus>
-        <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
-        <input type="text" id="inputNick" class="form-control" placeholder="닉네임" required>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="메일 주소" required autofocus>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="비밀번호" required>
+        <input type="text" id="inputNick" name="nickname" class="form-control" placeholder="닉네임" required>
         <button class="btn btn-primary btn-block" type="submit">가입하기</button>
+        {% if error %}
+            <div class="alert alert-info" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
     </form>
 {% endblock %}
