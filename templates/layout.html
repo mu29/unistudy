@@ -45,14 +45,14 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 강의 목록<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header">프로그래밍</li>
-                                <li><a href="#">Engineering Programming I</a> </li>
-                                <li><a href="#">Engineering Programming II</a> </li>
-                                <li><a href="#">Business Programming</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'ep1') }}">Engineering Programming I</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'ep2') }}">Engineering Programming II</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'bp') }}">Business Programming</a> </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">수학</li>
-                                <li><a href="#">Calculus I</a> </li>
-                                <li><a href="#">Calculus II</a> </li>
-                                <li><a href="#">Applied Linear Algebra</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'c1') }}">Calculus I</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'c2') }}">Calculus II</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'la') }}">Applied Linear Algebra</a> </li>
                                 <li><a href="#">Differential Equation</a> </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">과학</li>
