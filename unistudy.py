@@ -43,7 +43,8 @@ def logout():
 def do_login(email, password):
     # 아이디와 비밀번호로 유저 검색
     cursor = mysql.connect().cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM `user` WHERE `email` = '" + email + "' AND `password` = '" + password + "';")
+    cursor.execute("SELECT * FROM `user` WHERE `email` = '" + email +
+                                        "' AND `password` = '" + hashlib.sha224(password).hexdigest() + "';")
 
     # 유저가 없을 경우
     if cursor.rowcount == 0:
@@ -95,7 +96,7 @@ def do_register(email, password, nickname):
 
     # 가입 성공. 메일 보내자
     cursor.execute("INSERT INTO `user` SET `email` = '" + email +
-                   "', `password` = '" + password +
+                   "', `password` = '" + hashlib.sha224(password).hexdigest() +
                    "', `nickname` = '" + nickname + "';")
     cursor.close()
     conn.commit()
@@ -116,10 +117,6 @@ def send_success_mail(email):
     s.sendmail('unistylemaster@gmail.com', email, msg.as_string())
     s.quit()
 
-@app.route('/contact/')
-def contact():
-    return render_template('contact.html')
-
 @app.route('/verify/', methods=['POST', 'GET'])
 def verify():
     if request.method == 'GET':
@@ -134,6 +131,14 @@ def verify():
             return redirect(url_for('index'))
 
     return render_template('register.html')
+
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/lecture/<subject>')
+def lecture(subject):
+    return render_template('lecture.html', subject=subject)
 
 if __name__ == '__main__':
     app.debug = True
