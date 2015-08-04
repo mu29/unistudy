@@ -5,7 +5,7 @@ import hashlib
 from flask import *
 from database.db import *
 
-class UserDB():
+class UserDB:
 
     def __init__(self):
         self.connection = db.get_mysql().connect()

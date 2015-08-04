@@ -3,7 +3,7 @@
 from flaskext.mysql import MySQL
 from server import app
 
-class DataBase():
+class DataBase:
 
     def __init__(self):
         self.mysql = MySQL()
