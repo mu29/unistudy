@@ -14,6 +14,7 @@ app.config['MYSQL_DATABASE_DB'] = 'unistudy'
 @app.route('/')
 def index():
     if 'email' in session:
+        from database.lecture_db import lecture_db
         return render_template('index.html')
     return redirect(url_for('login'))
 
