@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.24)
 # Database: unistudy
-# Generation Time: 2015-08-04 09:11:31 +0000
+# Generation Time: 2015-08-04 14:43:46 +0000
 # ************************************************************
 
 
@@ -68,6 +68,7 @@ DROP TABLE IF EXISTS `subjects`;
 
 CREATE TABLE `subjects` (
   `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `group` char(255) DEFAULT NULL,
   `name` char(255) NOT NULL DEFAULT '',
   `message` text NOT NULL,
   PRIMARY KEY (`id`)
@@ -76,19 +77,20 @@ CREATE TABLE `subjects` (
 LOCK TABLES `subjects` WRITE;
 /*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
 
-INSERT INTO `subjects` (`id`, `name`, `message`)
+INSERT INTO `subjects` (`id`, `group`, `name`, `message`)
 VALUES
-	(1,'Engineering Programming I',''),
-	(2,'Engineering Programming II',''),
-	(3,'Calculus I',''),
-	(4,'Calculus II',''),
-	(5,'Applied Linear Algebra',''),
-	(6,'Differential Equation',''),
-	(7,'General Biology',''),
-	(8,'General Physics I',''),
-	(9,'General Physics II',''),
-	(10,'General Chemistry I',''),
-	(11,'General Chemistry II','');
+	(1,'프로그래밍','Engineering Programming I',''),
+	(2,'프로그래밍','Engineering Programming II',''),
+	(3,'프로그래밍','Business Programming',''),
+	(4,'수학','Calculus I',''),
+	(5,'수학','Calculus II',''),
+	(6,'수학','Applied Linear Algebra',''),
+	(7,'수학','Differential Equation',''),
+	(8,'과학','General Biology',''),
+	(9,'과학','General Physics I',''),
+	(10,'과학','General Physics II',''),
+	(11,'과학','General Chemistry I',''),
+	(12,'과학','General Chemistry II','');
 
 /*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
 UNLOCK TABLES;
