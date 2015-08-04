@@ -19,14 +19,8 @@
         <!-- 네비게이션 바 -->
         <nav class="navbar navbar-default">
             <div class="navbar-header">
-                <!-- 뭐 하는 부분일까 -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">UNISTUDY</a>
+                <!-- 타이틀 -->
+                <a class="navbar-brand" href="{{ url_for('index') }}">UNISTUDY</a>
             </div>
             <!-- 메뉴 목록 -->
             <div id="navbar" class="navbar-collapse collapse">
@@ -52,15 +46,15 @@
                                 <li class="dropdown-header">수학</li>
                                 <li><a href="{{ url_for('lecture', subject = 'c1') }}">Calculus I</a> </li>
                                 <li><a href="{{ url_for('lecture', subject = 'c2') }}">Calculus II</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'la') }}">Applied Linear Algebra</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'ala') }}">Applied Linear Algebra</a> </li>
                                 <li><a href="#">Differential Equation</a> </li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">과학</li>
-                                <li><a href="#">General Biology</a> </li>
-                                <li><a href="#">General Physics I</a> </li>
-                                <li><a href="#">General Physics II</a> </li>
-                                <li><a href="#">General Chemistry I</a> </li>
-                                <li><a href="#">General Chemistry II</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'gb') }}">General Biology</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'gp1') }}">General Physics I</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'gp2') }}">General Physics II</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'gc1') }}">General Chemistry I</a> </li>
+                                <li><a href="{{ url_for('lecture', subject = 'gc2') }}">General Chemistry II</a> </li>
                             </ul>
                         </li>
                     {% endblock %}

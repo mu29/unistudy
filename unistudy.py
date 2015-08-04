@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-
+'''
 import MySQLdb
 import smtplib
 import hashlib
@@ -43,7 +43,7 @@ def logout():
 def do_login(email, password):
     # 아이디와 비밀번호로 유저 검색
     cursor = mysql.connect().cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute("SELECT * FROM `user` WHERE `email` = '" + email +
+    cursor.execute("SELECT * FROM `users` WHERE `email` = '" + email +
                                         "' AND `password` = '" + hashlib.sha224(password).hexdigest() + "';")
 
     # 유저가 없을 경우
@@ -83,19 +83,19 @@ def do_register(email, password, nickname):
     cursor = conn.cursor(MySQLdb.cursors.DictCursor)
 
     # 이메일 중복 확인
-    cursor.execute("SELECT * FROM `user` WHERE `email` = '" + email + "';")
+    cursor.execute("SELECT * FROM `users` WHERE `email` = '" + email + "';")
     if cursor.rowcount > 0:
         cursor.close()
         return u'이미 가입된 메일 주소입니다.'
 
     # 닉네임 중복 확인
-    cursor.execute("SELECT * FROM `user` WHERE `nickname` = '" + nickname + "';")
+    cursor.execute("SELECT * FROM `users` WHERE `nickname` = '" + nickname + "';")
     if cursor.rowcount > 0:
         cursor.close()
         return u'이미 존재하는 닉네임입니다.'
 
     # 가입 성공. 메일 보내자
-    cursor.execute("INSERT INTO `user` SET `email` = '" + email +
+    cursor.execute("INSERT INTO `users` SET `email` = '" + email +
                    "', `password` = '" + hashlib.sha224(password).hexdigest() +
                    "', `nickname` = '" + nickname + "';")
     cursor.close()
@@ -125,7 +125,7 @@ def verify():
         if verify_key == request.args['key']:
             conn = mysql.connect()
             cursor = conn.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute("UPDATE `user` SET `verify` = '1' WHERE `email` = '" + email + "';")
+            cursor.execute("UPDATE `users` SET `verify` = '1' WHERE `email` = '" + email + "';")
             conn.commit()
             session['email'] = request.form['email']
             return redirect(url_for('index'))
@@ -142,4 +142,4 @@ def lecture(subject):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0')'''
