@@ -14,7 +14,6 @@ def login():
     if request.method == 'POST':
         error = do_login(request.form['email'], request.form['password'])
         if error is None:
-            session['email'] = request.form['email']
             return redirect(url_for('index'))
 
     # GET : 로그인 페이지
@@ -78,6 +77,8 @@ def do_login(email, password):
         return u'차단된 계정입니다.'
 
     # 로그인 성공
+    session['nickname'] = userdata['nickname']
+    session['email'] = userdata['email']
     cursor.close()
 
 def do_register(email, password, nickname):

@@ -3,4 +3,5 @@
 MODULE_NAMES = [
     'database',
     'user',
+    'lecture',
 ]

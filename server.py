@@ -21,10 +21,6 @@ def index():
 def contact():
     return render_template('contact.html')
 
-@app.route('/lecture/<subject>')
-def lecture(subject):
-    return render_template('lecture.html', subject=subject)
-
 def init_server():
     for module_name in MODULE_NAMES:
         __import__(module_name)
