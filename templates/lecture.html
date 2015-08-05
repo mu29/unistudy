@@ -8,51 +8,29 @@
 {% block body %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Engineering Programming I</h3>
+        <h3 class="panel-title">{{ subject_info['name'] }}</h3>
     </div>
     <div class="panel-body">
+        {% if get_length(lecture_info) == 0 %}
+            <h1 style="text-align: center">준비중입니다.</h1>
+        {% endif %}
+        {{ subject_info['message'] }}
     </div>
     <table class="table table-hover">
+        {% if get_length(lecture_info) != 0 %}
         <tr>
-            <td>테스트</td>
-            <td>테스트</td>
+            <th>#</th>
+            <th>제목</th>
+            <th>링크</th>
         </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
-        <tr>
-            <td>테스트</td>
-            <td>테스트</td>
-        </tr>
+            {% for i in range(get_length(lecture_info)) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ lecture_info[i]['name'] }}</td>
+                    <td><a href="{{ lecture_info[i]['link'] }}" class="btn btn-primary btn-xs">보러가기</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
     </table>
 </div>
 {% endblock %}

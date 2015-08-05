@@ -45,24 +45,8 @@
                                     {% if i == 0 or subjects()[i]['group'] != subjects()[i - 1]['group'] %}
                                         <li class="dropdown-header">{{ subjects()[i]['group'] }}</li>
                                     {% endif %}
-                                    <li><a href="{{ url_for('lecture', subject = subjects()[i]['id']) }}">{{ subjects()[i]['name'] }}</a> </li>
+                                    <li><a href="{{ url_for('lecture', no = i) }}">{{ subjects()[i]['name'] }}</a> </li>
                                 {% endfor %}
-                                <!--<li><a href="{{ url_for('lecture', subject = 'ep1') }}">Engineering Programming I</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'ep2') }}">Engineering Programming II</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'bp') }}">Business Programming</a> </li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">수학</li>
-                                <li><a href="{{ url_for('lecture', subject = 'c1') }}">Calculus I</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'c2') }}">Calculus II</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'ala') }}">Applied Linear Algebra</a> </li>
-                                <li><a href="#">Differential Equation</a> </li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">과학</li>
-                                <li><a href="{{ url_for('lecture', subject = 'gb') }}">General Biology</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'gp1') }}">General Physics I</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'gp2') }}">General Physics II</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'gc1') }}">General Chemistry I</a> </li>
-                                <li><a href="{{ url_for('lecture', subject = 'gc2') }}">General Chemistry II</a> </li>-->
                             </ul>
                         </li>
                     {% endblock %}
